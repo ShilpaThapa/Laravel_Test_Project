@@ -46,8 +46,13 @@
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <h3 class="px-6">Laravel Internship Example App</h3>
-                    <p class="text-center"><i>(laravel-example-1)</i></p>
+                    <div class="px-6">
+                        <h3 class="">Laravel Internship Example App</h3>
+                        <p class="text-center"><i>(laravel-example-1)</i></p>
+                        <p class="text-center">
+                            <a href="/post" class="ml-4 text-gray-700 dark:text-gray-500 underline">POST CRUD EXAMPLE</a>
+                        </p>
+                    </div>
                 </div>
 
                 <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
