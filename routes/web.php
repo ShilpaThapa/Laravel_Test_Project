@@ -17,7 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/post', function () {
+//     dd('we are on route page [routes/web.php] ..');
+// });
+
+/**
+ * Below code
+ * Route::get('/post', [PostController::class, 'index']);
+ * maps GET request on /post route to PostController's method. So,
+ * When laravel receives GET request on /post (open browser with url: localhost:8000/post)
+ * it executes the index method of PostController.
+ */
 Route::get('/post', [PostController::class, 'index']); // show post listing
+
 Route::get('/post/create', [PostController::class, 'create']); // show post create form
 Route::post('/post', [PostController::class, 'store']); // handle post request from the post create form shown in /post/create route and store post
 Route::get('/post/{id}/edit', [PostController::class, 'edit']); // show post edit form

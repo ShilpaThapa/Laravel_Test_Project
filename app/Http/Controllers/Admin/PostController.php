@@ -11,8 +11,10 @@ class PostController extends Controller
 
     public function index()
     {
-
+        // dd('we are inside index method of PostController as specified in web.php');
+        // get all post records from db table `posts` using eloquent orm Model (Post)
         $posts = Post::all();
+        // dd($posts);
         return view('post.index', compact('posts'));
     }
 
