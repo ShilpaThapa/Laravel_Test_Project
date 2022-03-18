@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,10 +31,23 @@ Route::get('/', function () {
  * When laravel receives GET request on /post (open browser with url: localhost:8000/post)
  * it executes the index method of PostController.
  */
-Route::get('/post', [PostController::class, 'index']); // show post listing
+// Route::get('/post', [PostController::class, 'index']); // show post listing
 
-Route::get('/post/create', [PostController::class, 'create']); // show post create form
-Route::post('/post', [PostController::class, 'store']); // handle post request from the post create form shown in /post/create route and store post
-Route::get('/post/{id}/edit', [PostController::class, 'edit']); // show post edit form
-Route::put('/post/{id}', [PostController::class, 'update']); // handle post request from the post edit form shown in /post/create route and update post
-Route::delete('/post/{id}/destroy', [PostController::class, 'destroy']); // delete post
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create'); 
+Route::post('/user', [UserController::class, 'store'])->name('user.store');
+Route::get('/user/index', [UserController::class, 'index'])->name('user.index'); 
+Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit'); 
+Route::put('/user/{id}/update', [UserController::class, 'update'])->name('user.update'); 
+Route::delete('/user/{id}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
+
+Route::get('/post/create', [PostController::class, 'create'])->name('post.create'); 
+Route::post('/post', [PostController::class, 'store'])->name('post.store'); 
+Route::get('/post/index', [PostController::class, 'store'])->name('post.index'); 
+Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit'); 
+Route::put('/post/{id}/update', [PostController::class, 'update'])->name('post.update');
+Route::delete('/post/{id}/destroy', [PostController::class, 'destroy'])->name('post.destroy');
+
