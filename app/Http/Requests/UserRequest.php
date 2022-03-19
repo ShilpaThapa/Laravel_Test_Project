@@ -13,7 +13,7 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,10 +22,24 @@ class UserRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        return 
-        [
-            
-        ];
+    {  
+        if ($this->getMethod()=='PUT') {
+            $rules=[
+            'name'=>'required|string|max:255',
+            'image'=>'mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'bio'=>'required',
+            'age'=>'required|numeric'
+            ];
+        }
+
+        if ($this->getMethod()=='POST') {
+            $rules=[
+            'name'=>'required|string|max:255',
+            'image'=>'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'bio'=>'required',
+            'age'=>'required|numeric'
+            ];
+        }
+        return $rules;
     }
 }

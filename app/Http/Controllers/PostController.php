@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
+use App\Http\Traits\ImageUpload;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
 {
-
+    use ImageUpload;
+    
     public function index()
     {
-        // dd('we are inside index method of PostController as specified in web.php');
-        // get all post records from db table `posts` using eloquent orm Model (Post)
         $posts = Post::all();
-        // dd($posts);
         return view('post.index', compact('posts'));
     }
 
@@ -23,23 +24,22 @@ class PostController extends Controller
         return view('post.create');
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-
-        // validate data sent from create post form
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255',
-        ]);
-
-
-        // store this data in db using eloquent ORM create method
-        Post::create($validatedData);
-
-        // redirect index page (post listing page)
-        return redirect('/post');
+        $input=$request->all();
+        if(!empty($input['image'])){
+            $pathname=$this->uploadImage($input['image'],'post');
+        }
+        $data=[
+            'title'=>$input['title'],
+            'description'=>$input['description'],
+            'status'=>$input['status'],
+            'image'=>$pathname
+        ];
+        Post::create($data);
+        Alert::success('Success', 'Post Added successfully!');
+        return redirect()->route('post.index');
     }
-
 
     public function edit($id)
     {
@@ -47,33 +47,35 @@ class PostController extends Controller
         return view('post.edit', compact('post'));
     }
 
-
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         $post = Post::findOrFail($id);
-
-        // validate data sent from create post form
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255',
-        ]);
-
-
-        // update data in db using eloquent ORM update method
-        $post->update($validatedData);
-
-        // redirect index page (post listing page)
-        return redirect('/post');
+        $input=$request->all();
+        if(!empty($input['image'])){
+            if (!empty($post->image)) {
+                $this->deleteImage($post->image);
+            }
+            $pathname=$this->uploadImage($input['image'],'post');
+        }
+        $data=[
+            'title'=>$input['title'],
+            'description'=>$input['description'],
+            'status'=>$input['status'],
+            'image'=>$pathname
+        ];
+        $post->update($data);
+        Alert::success('Success','Post Information Updated successfully!');
+        return redirect()->route('post.index');
     }
-
 
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-
-        // delete post record from db using eleqouent delete method
+        if (!empty($post->image)) {
+            $this->deleteImage($post->image);
+        }
         $post->delete();
-
-        return redirect('/post');
+        Alert::success('Success','Post Information has been deleted successfully!');
+        return redirect()->back();
     }
 }

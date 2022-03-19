@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
+use App\Http\Traits\ImageUpload;
 use App\Models\User;
-use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
+    use ImageUpload;
+
     public function index()
     {
         $users = User::all();
@@ -18,21 +22,23 @@ class UserController extends Controller
         return view('users.create');
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255',
-        ]);
-
-        // store this data in db using eloquent ORM create method
-        Post::create($validatedData);
-
-        // redirect index page (post listing page)
-        return redirect('/post');
+        $input = $request->all();
+        // dd($input['image']);
+        if (!empty($input['image'])) {
+            $pathname = $this->uploadImage($request->file('image'), 'users');
+        }
+        $data = [
+            'name' => $input['name'],
+            'age' => $input['age'],
+            'bio' => $input['bio'],
+            'image' => $pathname,
+        ];
+        User::create($data);
+        Alert::success('Success', 'User Added successfully!');
+        return redirect()->route('user.index');
     }
-
 
     public function edit($id)
     {
@@ -40,26 +46,35 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        $post = User::findOrFail($id);
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string|max:255',
-        ]);
-
-        // update data in db using eloquent ORM update method
-        $post->update($validatedData);
-
-        // redirect index page (post listing page)
-        return redirect('/post');
+        $user = User::findOrFail($id);
+        $input = $request->all();
+        if (!empty($input['image'])) {
+            if (!empty($user->image)) {
+                $this->deleteImage($user->image);
+            }
+            $pathname = $this->uploadImage($input['image'], 'users');
+        }
+        $data = [
+            'name' => $input['name'],
+            'age' => $input['age'],
+            'bio' => $input['bio'],
+            'image' => $pathname ?? $user->image,
+        ];
+        $user->update($data);
+        Alert::success('Success', 'User Information Updated successfully!');
+        return redirect()->route('user.index');
     }
-
 
     public function destroy($id)
     {
         $user = User::findOrFail($id);
+        if (!empty($user->image)) {
+            $this->deleteImage($user->image);
+        }
         $user->delete();
+        Alert::success('Success', 'User Information has been deleted successfully!');
         return redirect()->back();
     }
 }
