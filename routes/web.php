@@ -34,7 +34,6 @@ Route::get('/', function () {
 // Route::get('/post', [PostController::class, 'index']); // show post listing
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create'); 

@@ -1,32 +1,5 @@
 @extends('layouts.home')
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-2 col-s-5 col-m-3" >
-          <div class="sidebar-container" id="sidebar" >
-              <div class="sidebar-logo">
-                <a href="index.html">
-                <span>Home</span>
-                </a>
-                <a href="" id="togglesidebar">            
-                  <i class="fa fa-bars float-right" id="toggle-icon" aria-hidden="true"></i>         
-                </a>
-              </div>
-              <ul class="sidebar-navigation">
-                <li>
-                  <a href="home.html">
-                    <i class="fa fa-home" aria-hidden="true"></i><span>Home</span> 
-                  </a>
-                </li>
-                <li>
-                  <a href="user.html">
-                    <i class="fa fa-user" aria-hidden="true"></i><span>Users</span>
-                    
-                  </a>
-                </li>
-              </ul>
-          </div>
-      </div>
 
       <div class="col-10 col-s-7 col-m-9">
         <div class="row justify-content-center mt-6">   
