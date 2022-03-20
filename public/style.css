@@ -165,6 +165,11 @@ body {
     width: 100%;
   }
   
+  .sidebar-navigation li.active {
+    background-color: #2574A9;
+    width: 100%;
+  }
+  
   .sidebar-navigation .header {
     font-size: 12px;
     text-transform: uppercase;

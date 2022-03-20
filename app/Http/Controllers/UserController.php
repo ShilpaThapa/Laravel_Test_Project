@@ -25,7 +25,6 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $input = $request->all();
-        // dd($input['image']);
         if (!empty($input['image'])) {
             $pathname = $this->uploadImage($request->file('image'), 'users');
         }

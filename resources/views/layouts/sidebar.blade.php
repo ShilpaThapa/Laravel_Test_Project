@@ -11,13 +11,13 @@
                     </a>
                 </div>
                 <ul class="sidebar-navigation">
-                    <li>
+                    <li class="{{ request()->is('*user*') ? 'active' : '' }}">
                         <a href="{{ route('user.index') }}">
                             <i class="fa fa-user" aria-hidden="true"></i><span>Users</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('post.index') }}">
+                    <li class="{{ request()->is('*post*') ? 'active' : '' }}">
+                        <a href="{{ route('post.index', Auth::id()) }}">
                             <i class="fa fa-home" aria-hidden="true"></i><span>Posts</span>
                         </a>
                     </li>

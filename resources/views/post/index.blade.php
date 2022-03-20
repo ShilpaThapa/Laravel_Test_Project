@@ -40,7 +40,7 @@
                   <td>
                       <div class="row">
                         <a href="{{ route('post.edit',$post->id) }}">
-                            <button type="button" class="btn btn-info btn-sm mr-2"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-info btn-sm ml-3 mr-2"><i class="fa fa-pencil" aria-hidden="true"></i></button>
                           </a>
                           <form action="{{ route('post.destroy',$post->id) }}" method="POST">
                               @csrf

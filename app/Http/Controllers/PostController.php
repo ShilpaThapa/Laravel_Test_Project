@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Http\Traits\ImageUpload;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PostController extends Controller
 {
     use ImageUpload;
     
-    public function index()
+    public function index($id)
     {
-        $posts = Post::all();
+        $posts=Post::where('user_id',$id)->get();
         return view('post.index', compact('posts'));
     }
 
@@ -34,12 +35,14 @@ class PostController extends Controller
             'title'=>$input['title'],
             'description'=>$input['description'],
             'status'=>$input['status'],
-            'image'=>$pathname
+            'image'=>$pathname,
+            'user_id'=>auth()->user()->id
         ];
         Post::create($data);
         Alert::success('Success', 'Post Added successfully!');
-        return redirect()->route('post.index');
+        return redirect()->route('post.index',Auth::id());
     }
+
 
     public function edit($id)
     {
@@ -65,7 +68,7 @@ class PostController extends Controller
         ];
         $post->update($data);
         Alert::success('Success','Post Information Updated successfully!');
-        return redirect()->route('post.index');
+        return redirect()->route('post.index',Auth::id());
     }
 
     public function destroy($id)
@@ -75,7 +78,7 @@ class PostController extends Controller
             $this->deleteImage($post->image);
         }
         $post->delete();
-        Alert::success('Success','Post Information has been deleted successfully!');
+        Alert::success('Success','Post has been deleted successfully!');
         return redirect()->back();
     }
 }
