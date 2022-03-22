@@ -30,7 +30,7 @@
                     <label for=""><small>Age</small></label>
                   </div>
                   <div class="col-sm-12 col-md-9">
-                    <input type="text" name="age" class="form-control form-control-sm @error('age') is-invalid @enderror" id="" aria-describedby="emailHelp" placeholder="Enter age">
+                    <input type="number" name="age" class="form-control form-control-sm @error('age') is-invalid @enderror" id="" aria-describedby="emailHelp" placeholder="Enter age">
                     @error('age')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
