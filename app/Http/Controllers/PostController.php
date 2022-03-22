@@ -31,14 +31,9 @@ class PostController extends Controller
         if(!empty($input['image'])){
             $pathname=$this->uploadImage($input['image'],'post');
         }
-        $data=[
-            'title'=>$input['title'],
-            'description'=>$input['description'],
-            'status'=>$input['status'],
-            'image'=>$pathname,
-            'user_id'=>auth()->user()->id
-        ];
-        Post::create($data);
+        $input['image']=$pathname;
+        $input['user_id']=auth()->user()->id;
+        Post::create($input);
         Alert::success('Success', 'Post Added successfully!');
         return redirect()->route('post.index',Auth::id());
     }
@@ -60,13 +55,8 @@ class PostController extends Controller
             }
             $pathname=$this->uploadImage($input['image'],'post');
         }
-        $data=[
-            'title'=>$input['title'],
-            'description'=>$input['description'],
-            'status'=>$input['status'],
-            'image'=>$pathname
-        ];
-        $post->update($data);
+        $input['image']=$pathname;
+        $post->update($input);
         Alert::success('Success','Post Information Updated successfully!');
         return redirect()->route('post.index',Auth::id());
     }

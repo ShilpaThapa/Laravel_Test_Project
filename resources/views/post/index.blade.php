@@ -48,7 +48,6 @@
                               <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-trash" aria-hidden="true"></i></button>
                           </form>
                       </div>
-                    
                   </td>
                   </tr>
                   @endforeach
