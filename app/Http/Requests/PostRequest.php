@@ -28,7 +28,8 @@ class PostRequest extends FormRequest
                 'title'=>'required|max:255',
                 'image'=>'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'description'=>'required',
-                'status'=>'required'
+                'status'=>'required',
+                'position'=>'required|unique:posts,position'
             ];
         }
 
@@ -37,7 +38,8 @@ class PostRequest extends FormRequest
                 'title'=>'required|max:255',
                 'image'=>'mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'description'=>'required',
-                'status'=>'required'
+                'status'=>'required',
+                'position'=>'required|unique:posts,position,'.$this->id
             ];
         }
         return $rules;

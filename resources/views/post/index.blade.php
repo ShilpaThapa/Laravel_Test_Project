@@ -26,9 +26,12 @@
                   @isset($posts)
                   @foreach ($posts as $post)
                   <tr>
-                    <td>{{ $i++ }}</td>
+                  <td>{{ $i++ }}</td>
                   <td>{{$post->title}}</td>
-                  <td>{{$post->description}}</td>
+                  <td>{{ \Illuminate\Support\Str::limit($post->description, 80, $end='...') }}
+                  </td>
+                  {{-- <td>{{ str()->limit($post->description, $limit = 150, $end = '...') }}
+                  </td> --}}
                   <td>
                       @if ($post->status==1)
                         Active

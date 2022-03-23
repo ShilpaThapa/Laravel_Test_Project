@@ -30,14 +30,13 @@ class PostController extends Controller
         $input=$request->all();
         if(!empty($input['image'])){
             $pathname=$this->uploadImage($input['image'],'post');
+            $input['image']=$pathname;
         }
-        $input['image']=$pathname;
         $input['user_id']=auth()->user()->id;
         Post::create($input);
         Alert::success('Success', 'Post Added successfully!');
         return redirect()->route('post.index',Auth::id());
     }
-
 
     public function edit($id)
     {
@@ -54,8 +53,8 @@ class PostController extends Controller
                 $this->deleteImage($post->image);
             }
             $pathname=$this->uploadImage($input['image'],'post');
+            $input['image']=$pathname;
         }
-        $input['image']=$pathname;
         $post->update($input);
         Alert::success('Success','Post Information Updated successfully!');
         return redirect()->route('post.index',Auth::id());

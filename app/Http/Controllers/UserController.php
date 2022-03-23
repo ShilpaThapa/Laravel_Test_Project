@@ -27,8 +27,8 @@ class UserController extends Controller
         $input = $request->all();
         if (!empty($input['image'])) {
             $pathname = $this->uploadImage($request->file('image'), 'users');
+            $input['image']=$pathname;
         }
-        $input['image']=$pathname;
         User::create($input);
         Alert::success('Success', 'User Added successfully!');
         return redirect()->route('user.index');
@@ -47,8 +47,8 @@ class UserController extends Controller
         if (!empty($input['image'])) {
             if (!empty($user->image)) {
                 $this->deleteImage($user->image);
+                $pathname = $this->uploadImage($input['image'], 'users');
             }
-            $pathname = $this->uploadImage($input['image'], 'users');
         }
         $input['image']=$pathname ?? $user->image;
         $user->update($input);

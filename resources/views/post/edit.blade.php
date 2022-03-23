@@ -40,6 +40,21 @@
 
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
+                    <label for=""><small>Position</small></label>
+                  </div>
+                  <div class="col-sm-12 col-md-9">
+                    <input type="number" name="position" value="{{ $post->position }}" class="form-control form-control-sm 
+                    @error('position') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Enter position">
+                    @error('position')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12 col-md-3">
                     <label for=""><small>Image</small></label>
                   </div>
                   <div class="col-sm-12 col-md-9">

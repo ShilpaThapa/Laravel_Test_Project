@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('welcome');
 });
 
@@ -37,3 +37,4 @@ Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit'
 Route::put('/post/{id}/update', [PostController::class, 'update'])->name('post.update');
 Route::delete('/post/{id}/destroy', [PostController::class, 'destroy'])->name('post.destroy');
 
+include('frontend.php');
