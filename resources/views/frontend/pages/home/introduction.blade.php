@@ -6,14 +6,15 @@
 </div>
 <div class="row">
 
+    @foreach ($posts as $post)
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
-        @foreach ($posts as $post)
         <div class="tm-content-box">
-            <img src="img/tm-img-310x180-1.jpg" alt="Image" class="tm-margin-b-20 img-fluid">
+            <img src="{{ asset($post->image) }}" alt="Image" class="tm-margin-b-20 img-fluid">
             <h4 class="tm-margin-b-20 tm-gold-text">{{ $post->title }}</h4>
-            <p class="tm-margin-b-20">{{}}</p>
-            <a href="#" class="tm-btn text-uppercase">Detail</a>    
+            <p class="tm-margin-b-20">{{ \Illuminate\Support\Str::limit($post->description, 100, $end='...') }}</p>
+            <p>Created By:<b>{{ $post->user->name }}</b> </p>
+            <a href="#" class="tm-btn text-uppercase">Read More</a>    
         </div>  
-        @endforeach
     </div>
+    @endforeach
 </div> 

@@ -4,7 +4,7 @@
             
             <h3 class="tm-gold-text tm-title">Pellentesque fermentum mauris et posuere</h3>
             <p class="tm-margin-b-30">Vivamus accumsan blandit ligula. Sed lobortis efficitur sapien</p>
-            <img src="img/tm-img-660x330-1.jpg" alt="Image" class="tm-margin-b-40 img-fluid">
+            <img src="{{ asset('frontend/img/tm-img-660x330-1.jpg') }}" alt="Image" class="tm-margin-b-40 img-fluid">
             <p>
                 Donec tempor lobortis tortor, in feugiat massa facilisis sed. Ut dignissim viverra pretium. In eu justo maximus turpis feugiat finibus scelerisque nec eros. Cras nec lectus tempor nibh vestibulum eleifend et ac elit.
             </p>

@@ -26,7 +26,7 @@ class PostRequest extends FormRequest
         if ($this->getMethod()=='POST') {
             $rules=[
                 'title'=>'required|max:255',
-                'image'=>'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image'=>'required|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'description'=>'required',
                 'status'=>'required',
                 'position'=>'required|unique:posts,position'
@@ -36,7 +36,7 @@ class PostRequest extends FormRequest
         if ($this->getMethod()=='PUT') {
             $rules=[
                 'title'=>'required|max:255',
-                'image'=>'mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'image'=>'mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'description'=>'required',
                 'status'=>'required',
                 'position'=>'required|unique:posts,position,'.$this->id

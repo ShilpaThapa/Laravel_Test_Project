@@ -10,7 +10,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        $posts=Post::with('users')->get();
+        $posts=Post::with('user')->orderBy('position','asc')->get();
         return view('frontend.pages.home.index',compact('posts'));
     }
 }

@@ -30,8 +30,6 @@
                   <td>{{$post->title}}</td>
                   <td>{{ \Illuminate\Support\Str::limit($post->description, 80, $end='...') }}
                   </td>
-                  {{-- <td>{{ str()->limit($post->description, $limit = 150, $end = '...') }}
-                  </td> --}}
                   <td>
                       @if ($post->status==1)
                         Active
@@ -39,7 +37,7 @@
                         Inactive
                       @endif
                     </td>
-                  <td><img src="{{ asset($post->image) }}" alt="" width="60px"></td>
+                  <td><img src="{{ asset($post->image) }}" alt="" width="70px"></td>
                   <td>
                       <div class="row">
                         <a href="{{ route('post.edit',$post->id) }}">
