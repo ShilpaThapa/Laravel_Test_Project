@@ -85,7 +85,8 @@
 
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         
-                        @foreach ($category->posts as $post)
+                        @foreach ($category->posts as $key=>$post)
+                        @if ($key<=1)
                         <div class="tm-content-box tm-content-box-contact">
                             <img src="{{ asset($post->image ?? 'frontend/img/tm-img-310x180-1.jpg') }}" alt="Image" class="tm-margin-b-20 img-fluid">
                             <h4 class="tm-margin-b-20 tm-gold-text">{{ $post->title }}</h4>
@@ -93,6 +94,7 @@
                             <a href="#" class="tm-btn text-uppercase">Detail</a>
                             <p>Created By:<b>{{ $post->user->name ?? ''}}</b> </p>
                         </div> 
+                        @endif
                         @endforeach
                     </div>
                 </div>
@@ -102,47 +104,28 @@
                         
                         <div class="tm-contact-related-posts-container">
                             <h3 class="tm-gold-text tm-title tm-margin-b-30">Related Posts</h3>
+                            @foreach ($category->posts as $key=>$post )
+                            @if ($key>1)
                             <div class="media tm-related-post">
-                              <div class="media-left media-middle">
-                                <a href="#">
-                                  <img class="media-object" src="{{asset('frontend/img/tm-img-240x120-1.jpg')  }} " alt="Generic placeholder image">
-                                </a>
+                                <div class="media-left media-middle">
+                                  <a href="#">
+                                    <img class="media-object" src="{{asset($post->image ?? 'frontend/img/tm-img-310x180-1.jpg' )}} " alt="Generic placeholder image">
+                                  </a>
+                                </div>
+                                
+                                <div class="media-body">
+                                  <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">{{ $post->title }}</h4></a>
+                                  <p class="tm-small-font tm-media-description">{{ $post->description }}</p>
+                                  <p>Created By:<b>{{ $post->user->name ?? ''}}</b> </p>
+                                </div>
                               </div>
-                              <div class="media-body">
-                                <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
-                                <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                              </div>
-                            </div>
-                            <div class="media tm-related-post">
-                              <div class="media-left media-middle">
-                                <a href="#">
-                                  <img class="media-object" src="{{asset('frontend/img/tm-img-240x120-2.jpg')  }} " alt="Generic placeholder image">
-                                </a>
-                              </div>
-                              <div class="media-body">
-                                <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
-                                <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                              </div>
-                            </div>
-                            <div class="media tm-related-post">
-                              <div class="media-left media-middle">
-                                <a href="#">
-                                  <img class="media-object" src="{{asset('frontend/img/tm-img-240x120-3.jpg')  }} " alt="Generic placeholder image">
-                                </a>
-                              </div>
-                              <div class="media-body">
-                                <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
-                                <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                              </div>
-                            </div>
+                            @endif
+                            @endforeach
                         </div>                                
-
                     </div>
                 </div>
-
             </div>
         </div>
-
     </div>
 </section>
 

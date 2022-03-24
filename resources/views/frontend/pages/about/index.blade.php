@@ -58,10 +58,25 @@
         </div>
 
         <div class="row tm-margin-t-mid">
-            @foreach ($category->posts as $post)
+            @foreach ($category->posts as $key=>$post)
+            @if ($key<=2)
             <x-vertical-card :title="$post->title" :description="$post->description" :imagePath="$post->image" 
                 :author="$post->user->name" />
+            @endif
             @endforeach
+
+            <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3">
+
+                <div class="tm-content-box tm-margin-b-30">
+                    <a href="#" class="tm-text-link"><h4 class="tm-margin-b-20 tm-thin-font">Duis sit amet tristique #1</h4></a>
+                    <p class="tm-margin-b-30">Vestibulum arcu erat, lobortis sit amet tellus ut, semper tristique nibh. Nunc in molestie elit.</p><hr>
+                </div>
+                <div class="tm-content-box">
+                    <a href="#" class="tm-text-link"><h4 class="tm-margin-b-20 tm-thin-font">Duis sit amet tristique #2</h4></a>
+                    <p>Vestibulum arcu erat, lobortis sit amet tellus ut, semper tristique nibh. Nunc in molestie elit.</p>
+                </div>  
+
+            </div>
         </div> 
     </div>
 </section>

@@ -6,7 +6,8 @@
 </div>
 <div class="row">
 
-    @foreach ($posts as $post)
+    @foreach ($posts as $key=>$post)
+    @if ($key<=3)
     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
         <div class="tm-content-box">
             <img src="{{ asset($post->image) }}" alt="Image" class="tm-margin-b-20 img-fluid">
@@ -16,5 +17,6 @@
             <a href="#" class="tm-btn text-uppercase">Read More</a>    
         </div>  
     </div>
+    @endif
     @endforeach
 </div> 

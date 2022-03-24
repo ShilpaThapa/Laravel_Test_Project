@@ -56,39 +56,25 @@
                 <div class="row tm-2-rows-md-down-1 tm-margin-t-mid">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <h3 class="tm-gold-text tm-title tm-margin-b-30">Related Posts</h3>
-                        <div class="media tm-related-post">
-                            <div class="media-left media-middle">
-                              <a href="#">
-                                <img class="media-object" src="{{asset('frontend/img/tm-img-240x120-1.jpg')  }}" alt="Generic placeholder image">
-                              </a>
-                            </div>
-                            <div class="media-body">
-                              <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
-                              <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                            </div>
-                          </div>
-                          <div class="media tm-related-post">
-                            <div class="media-left media-middle">
-                              <a href="#">
-                                <img class="media-object" src="{{asset('frontend/img/tm-img-240x120-2.jpg')  }}" alt="Generic placeholder image">
-                              </a>
-                            </div>
-                            <div class="media-body">
-                              <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
-                              <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                            </div>
-                          </div>
-                          <div class="media tm-related-post">
-                            <div class="media-left media-middle">
-                              <a href="#">
-                                <img class="media-object" src="{{asset('frontend/img/tm-img-240x120-3.jpg')  }} " alt="Generic placeholder image">
-                              </a>
-                            </div>
-                            <div class="media-body">
-                              <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">Lorem ipsum dolor</h4></a>
-                              <p class="tm-small-font tm-media-description">Aenean cursus tellus mauris, quis consequat mauris dapibus id. Donec scelerisque porttitor pharetra.</p>
-                            </div>
-                          </div>
+                        @foreach ($posts as $key=>$post )
+                            @if ($key>3)
+                            <div class="media tm-related-post">
+                                <div class="media-left media-middle">
+                                  <a href="#">
+                                    <img class="media-object" src="{{asset($post->image ?? 'frontend/img/tm-img-310x180-1.jpg' )}} " alt="Generic placeholder image">
+                                  </a>
+                                </div>
+
+                                <div class="media-body">
+                                  <a href="#"><h4 class="media-heading tm-gold-text tm-margin-b-15">{{ $post->title }}</h4></a>
+                                  <p class="tm-small-font tm-media-description">{{ $post->description }}</p>
+                                  <p>Created By:<b>{{ $post->user->name ?? ''}}</b> </p>
+                                </div>
+                                
+                              </div>
+                            @endif
+                            @endforeach
+                       
                     </div>
                 </div>    
             </div>

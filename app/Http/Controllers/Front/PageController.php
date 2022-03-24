@@ -11,7 +11,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        $posts=Post::with('user')->orderBy('position','asc')->take(4)->get();
+        $posts=Post::with('user')->orderBy('position','asc')->take(7)->get();
         return view('frontend.pages.home.index',compact('posts'));
     }
 
