@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('backend.layouts.home')
 
 @section('content')
 <div class="col-10 col-s-7 col-m-9">
@@ -6,13 +6,13 @@
       <div class="col-md-8 col-sm-10">
         <div class="card">
           <div class="card-body">
-            <h4>Posts</h4>
+            <h4>Edit Post</h4>
             <form method="POST" action="{{ route('post.update',$post->id) }}" enctype="multipart/form-data">
               @csrf
               @method('PUT')
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
-                    <label for=""><small>Title</small></label>
+                    <label for="">Title</label>
                   </div>  
                   <div class="col-sm-12 col-md-9">
                     <input type="text" name="title" value="{{ $post->title }}" class="form-control form-control-sm" id="" aria-describedby="emailHelp" placeholder="Enter title">
@@ -26,7 +26,7 @@
                     
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
-                    <label for=""><small>Description</small></label>
+                    <label for="">Description</label>
                   </div>
                   <div class="col-sm-12 col-md-9">
                     <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" placeholder="Enter description">{{ $post->description }}</textarea>
@@ -40,7 +40,7 @@
 
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
-                    <label for=""><small>Position</small></label>
+                    <label for="">Position</label>
                   </div>
                   <div class="col-sm-12 col-md-9">
                     <input type="number" name="position" value="{{ $post->position }}" class="form-control form-control-sm 
@@ -55,7 +55,7 @@
 
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
-                    <label for=""><small>Image</small></label>
+                    <label for="">Image</label>
                   </div>
                   <div class="col-sm-12 col-md-9">
                     <input type="file" class="form-control form-control-sm @error('image') is-invalid @enderror" name="image" id="image">
@@ -72,7 +72,28 @@
 
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
-                    <label for=""><small>Status</small></label>
+                    <label for="">Select Category</label>
+                  </div>
+                  <div class="col-sm-12 col-md-9">
+                  <select class="form-control form-control-sm @error('category_id') is-invalid @enderror" name="category_id">
+                      <option>Select</option>
+                      @isset($categories)
+                      @foreach ($categories as $id=>$title)
+                      <option value="{{ $id }}" {{ $id==$post->category_id ? 'selected' : ''}}>{{ $title }}</option>
+                      @endforeach
+                      @endisset
+                    </select>
+                    @error('category_id')
+                      <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
+                  </div>
+                  </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-12 col-md-3">
+                    <label for="">Status</label>
                   </div>
                 <div class="col-sm-12 col-md-3">
                   <select class="form-control form-control-sm" name="status">

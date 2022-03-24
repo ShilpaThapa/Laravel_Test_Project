@@ -59,12 +59,12 @@
                 
                     <h3 class="tm-gold-text tm-title tm-footer-content-box-title">Fusce non turpis</h3>
                     <div class="tm-margin-b-30">
-                        <img src="img/tm-img-100x100-1.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-2.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-3.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-4.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-5.jpg" alt="Image" class="tm-footer-thumbnail">
-                        <img src="img/tm-img-100x100-6.jpg" alt="Image" class="tm-footer-thumbnail">
+                        <img src="{{asset('frontend/img/tm-img-100x100-1.jpg')}}" alt="Image" class="tm-footer-thumbnail">
+                        <img src="{{asset('frontend/img/tm-img-100x100-2.jpg')}}" alt="Image" class="tm-footer-thumbnail">
+                        <img src="{{asset('frontend/img/tm-img-100x100-3.jpg')}}" alt="Image" class="tm-footer-thumbnail">
+                        <img src="{{asset('frontend/img/tm-img-100x100-4.jpg')}}" alt="Image" class="tm-footer-thumbnail">
+                        <img src="{{asset('frontend/img/tm-img-100x100-5.jpg')}}" alt="Image" class="tm-footer-thumbnail">
+                        <img src="{{asset('frontend/img/tm-img-100x100-6.jpg')}}" alt="Image" class="tm-footer-thumbnail">
                     </div>
                     <p class="tm-margin-b-20">Curabitur dui massa, aliquam quis mi sed, tempor vulputate tellus. Sed vestibulum non neque.</p>
                     <a href="#" class="tm-btn tm-btn-gray text-uppercase">Browse</a>

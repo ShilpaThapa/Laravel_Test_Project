@@ -9,6 +9,10 @@ body {
   font-size: 14px;
 }
 
+label {
+  font-size: small;
+}
+
 .navbar-brand{
     color:  #cddddd !important;
 }
@@ -44,7 +48,7 @@ body {
 
 .sidebar-container {
     position: fixed;
-    /* width: 220px; */
+    width: 220px;
     height: 100%;
     left: 0;
     top: 0;

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -36,5 +37,12 @@ Route::get('/post/{id}/index', [PostController::class, 'index'])->name('post.ind
 Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit'); 
 Route::put('/post/{id}/update', [PostController::class, 'update'])->name('post.update');
 Route::delete('/post/{id}/destroy', [PostController::class, 'destroy'])->name('post.destroy');
+
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create'); 
+Route::post('/category', [CategoryController::class, 'store'])->name('category.store'); 
+Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index'); 
+Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit'); 
+Route::put('/category/{id}/update', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('/category/{id}/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 include('frontend.php');

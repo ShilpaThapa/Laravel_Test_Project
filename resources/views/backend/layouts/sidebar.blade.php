@@ -21,6 +21,11 @@
                             <i class="fa fa-home" aria-hidden="true"></i><span>Posts</span>
                         </a>
                     </li>
+                    <li class="{{ request()->is('*category*') ? 'active' : '' }}">
+                        <a href="{{ route('category.index', Auth::id()) }}">
+                            <i class="fa fa-home" aria-hidden="true"></i><span>Categories</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

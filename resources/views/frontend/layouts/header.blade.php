@@ -26,18 +26,11 @@
                         
                         <div class="collapse navbar-toggleable-sm" id="tmNavbar">
                             <ul class="nav navbar-nav">
-                                <li class="nav-item active">
-                                    <a href="index.html" class="nav-link">Home</a>
+                                @foreach ($menuItems as $slug=>$title)
+                                <li class="nav-item {{ request()->segment(1)==$slug ? 'active' : ''}} ">
+                                    <a href="{{ route('front.pages',$slug) }}" class="nav-link">{{ $title }}</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="about.html" class="nav-link">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="blog.html" class="nav-link">Blog</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="contact.html" class="nav-link">Contact</a>
-                                </li>
+                                @endforeach
                             </ul>                        
                         </div>
                         

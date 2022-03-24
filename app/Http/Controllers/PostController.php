@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Http\Traits\ImageUpload;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -16,13 +17,14 @@ class PostController extends Controller
     
     public function index($id)
     {
-        $posts=Post::where('user_id',$id)->get();
-        return view('post.index', compact('posts'));
+        $posts=Post::where('user_id',$id)->with('category')->paginate(5);
+        return view('backend.post.index', compact('posts'));
     }
-
+    
     public function create()
     {
-        return view('post.create');
+        $categories=Category::pluck('title','id');
+        return view('backend.post.create',compact('categories'));
     }
 
     public function store(PostRequest $request)
@@ -41,7 +43,8 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        return view('post.edit', compact('post'));
+        $categories=Category::pluck('title','id');
+        return view('backend.post.edit', compact('post','categories'));
     }
 
     public function update(PostRequest $request, $id)

@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('backend.layouts.home')
 
 @section('content')
 <div class="col-10 col-s-7 col-m-9">
@@ -13,7 +13,7 @@
 
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
-                    <label for=""><small>Name</small></label>
+                    <label for="">Name</label>
                   </div>
                   <div class="col-sm-12 col-md-9">
                     <input type="text" name="name" class="form-control form-control-sm @error('name') is-invalid @enderror" id="" aria-describedby="emailHelp" placeholder="Enter name">
@@ -27,7 +27,7 @@
                     
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
-                    <label for=""><small>Age</small></label>
+                    <label for="">Age</label>
                   </div>
                   <div class="col-sm-12 col-md-9">
                     <input type="number" name="age" class="form-control form-control-sm @error('age') is-invalid @enderror" id="" aria-describedby="emailHelp" placeholder="Enter age">
@@ -41,7 +41,7 @@
 
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
-                    <label for=""><small>Bio</small></label>
+                    <label for="">Bio</label>
                   </div>
                   <div class="col-sm-12 col-md-9">
                     <textarea class="form-control @error('bio') is-invalid @enderror" name="bio" id="bio" placeholder="Enter bio"></textarea>
@@ -55,7 +55,7 @@
 
                 <div class="form-group row">
                   <div class="col-sm-12 col-md-3">
-                    <label for=""><small>Image</small></label>
+                    <label for="">Image</label>
                   </div>
                   <div class="col-sm-12 col-md-9">
                     <input type="file" class="form-control form-control-sm @error('image') is-invalid @enderror" name="image" id="image">

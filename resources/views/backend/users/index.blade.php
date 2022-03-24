@@ -1,4 +1,5 @@
-@extends('layouts.home')
+@extends('backend.layouts.home')
+
 @section('content')
 
       <div class="col-10 col-s-7 col-m-9">

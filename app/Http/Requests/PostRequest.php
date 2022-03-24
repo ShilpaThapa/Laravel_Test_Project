@@ -29,7 +29,8 @@ class PostRequest extends FormRequest
                 'image'=>'required|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'description'=>'required',
                 'status'=>'required',
-                'position'=>'required|unique:posts,position'
+                'position'=>'required|unique:posts,position',
+                'category_id'=>'required'
             ];
         }
 
@@ -39,7 +40,8 @@ class PostRequest extends FormRequest
                 'image'=>'mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
                 'description'=>'required',
                 'status'=>'required',
-                'position'=>'required|unique:posts,position,'.$this->id
+                'position'=>'required|unique:posts,position,'.$this->id,
+                'category_id'=>'required'
             ];
         }
         return $rules;
